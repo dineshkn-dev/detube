@@ -1,0 +1,17 @@
+# Normalise line endings across platforms.
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.zip binary
+
+# Generated files — keep them out of diffs and language stats.
+package-lock.json linguist-generated=true
+dist/** linguist-generated=true
+
+# Documentation
+*.md linguist-documentation=true
+docs/** linguist-documentation=true

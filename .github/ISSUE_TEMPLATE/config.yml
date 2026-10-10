@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or idea
+    url: https://github.com/dineshkn-dev/detube/discussions
+    about: Ask questions and float ideas — enable Discussions in the repository settings.
+  - name: Security vulnerability
+    url: https://github.com/dineshkn-dev/detube/security/advisories/new
+    about: Please report security issues privately. See SECURITY.md.
+  - name: Privacy policy
+    url: https://github.com/dineshkn-dev/detube/blob/main/PRIVACY.md
+    about: What DeTube stores, and what leaves your browser.

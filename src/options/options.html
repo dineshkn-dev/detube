@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DeTube — Settings</title>
+    <link rel="icon" href="icons/icon-32.png" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="aurora" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <span class="dt-mark" aria-hidden="true"><span class="dt-mark__prism"></span></span>
+        <div class="brand__text">
+          <h1>DeTube</h1>
+          <p>YouTube provides the content; you control discovery.</p>
+        </div>
+      </div>
+      <div class="pills" id="status-pills" aria-live="polite"></div>
+    </header>
+
+    <main class="page">
+      <section class="card">
+        <div class="card__head">
+          <h2>Connection</h2>
+          <span class="card__hint">Your key never leaves this browser.</span>
+        </div>
+
+        <div class="field">
+          <label for="api-key">YouTube Data API key</label>
+          <div class="input-row">
+            <input
+              id="api-key"
+              type="password"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="AIza…"
+            />
+            <button id="save-key" class="btn btn--primary" type="button">Save</button>
+            <button id="clear-key" class="btn btn--ghost" type="button">Clear</button>
+          </div>
+        </div>
+        <p class="hint">
+          Stored only in <code>chrome.storage.local</code> and sent only to
+          <code>googleapis.com</code>. Bring your own key to get your own daily quota.
+        </p>
+
+        <hr />
+
+        <div class="row row--between">
+          <div>
+            <p class="row__title">Subscriptions</p>
+            <p class="hint">
+              Requests only the <code>youtube.readonly</code> scope. Watch history is never read.
+            </p>
+          </div>
+          <div class="row__actions">
+            <button id="connect-subs" class="btn" type="button">Connect</button>
+            <button id="disconnect-subs" class="btn btn--ghost" type="button">Disconnect</button>
+          </div>
+        </div>
+
+        <div class="meter" id="quota-meter"></div>
+      </section>
+
+      <section class="card">
+        <div class="card__head"><h2>Feed</h2></div>
+
+        <label class="switch">
+          <input id="enabled" type="checkbox" />
+          <span class="switch__track" aria-hidden="true"></span>
+          <span class="switch__label">Enable DeTube on the YouTube home page</span>
+        </label>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="density">Density</label>
+            <select id="density">
+              <option value="comfortable">Comfortable</option>
+              <option value="compact">Compact</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="videos-per-section">Videos per section</label>
+            <input id="videos-per-section" type="number" min="4" max="30" step="1" />
+          </div>
+          <div class="field field--wide">
+            <label for="randomization"
+              >Randomization <output id="randomization-out"></output
+            ></label>
+            <input id="randomization" type="range" min="0" max="100" step="5" />
+          </div>
+          <div class="field">
+            <label for="freshness">Freshness preference</label>
+            <select id="freshness">
+              <option value="low">Low — favour popular</option>
+              <option value="medium">Medium</option>
+              <option value="high">High — favour recent</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="load-more">Loading</label>
+            <select id="load-more">
+              <option value="button">Load more button</option>
+              <option value="auto">Automatic</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="region">Region code</label>
+            <input id="region" type="text" maxlength="2" placeholder="US" spellcheck="false" />
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="reshuffle" class="btn" type="button">Reshuffle feed</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__head">
+          <h2>Topics</h2>
+          <span class="card__hint">Explicit choices only — never inferred from behaviour.</span>
+        </div>
+        <div id="categories" class="pills pills--wrap"></div>
+
+        <hr />
+
+        <div class="field">
+          <label for="topic-input">Add a custom topic</label>
+          <div class="input-row">
+            <input id="topic-input" type="text" placeholder="e.g. woodworking" spellcheck="false" />
+            <button id="add-topic" class="btn" type="button">Add</button>
+          </div>
+        </div>
+        <div id="topics" class="chips"></div>
+      </section>
+
+      <section class="card">
+        <div class="card__head"><h2>Channels</h2></div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="include-channels">Include (one per line — ID or @handle)</label>
+            <textarea id="include-channels" rows="4" spellcheck="false"></textarea>
+          </div>
+          <div class="field">
+            <label for="exclude-channels">Exclude (one per line — ID or @handle)</label>
+            <textarea id="exclude-channels" rows="4" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__head"><h2>Content filters</h2></div>
+
+        <label class="switch">
+          <input id="hide-shorts" type="checkbox" />
+          <span class="switch__track" aria-hidden="true"></span>
+          <span class="switch__label"
+            >Hide Shorts (best-effort — YouTube exposes no Shorts flag)</span
+          >
+        </label>
+        <label class="switch">
+          <input id="hide-livestreams" type="checkbox" />
+          <span class="switch__track" aria-hidden="true"></span>
+          <span class="switch__label">Hide livestreams</span>
+        </label>
+        <label class="switch">
+          <input id="hide-clickbait" type="checkbox" />
+          <span class="switch__track" aria-hidden="true"></span>
+          <span class="switch__label">Hide clickbait-like titles (heuristic, not exact)</span>
+        </label>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="min-duration">Minimum duration (minutes, 0 = off)</label>
+            <input id="min-duration" type="number" min="0" step="1" />
+          </div>
+          <div class="field">
+            <label for="max-duration">Maximum duration (minutes, 0 = off)</label>
+            <input id="max-duration" type="number" min="0" step="1" />
+          </div>
+        </div>
+      </section>
+
+      <section class="card card--privacy">
+        <div class="card__head"><h2>Privacy</h2></div>
+        <ul class="plain">
+          <li>No analytics, telemetry, or tracking.</li>
+          <li>No watch history, clicks, hovers, likes, or search history are recorded.</li>
+          <li>
+            Settings and a daily quota counter are stored locally; API responses are cached in
+            memory only.
+          </li>
+          <li>
+            The only network requests are to <code>www.googleapis.com/youtube/v3</code> with your
+            own key.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <div class="toasts" id="toasts" aria-live="polite" aria-atomic="true"></div>
+    <script src="options.js"></script>
+  </body>
+</html>

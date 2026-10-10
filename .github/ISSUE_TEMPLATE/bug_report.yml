@@ -1,0 +1,115 @@
+name: Bug report
+description: Something is broken or behaving unexpectedly.
+title: '[Bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a report.
+
+        **Do not paste your YouTube Data API key** — or any other secret — into this issue.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I have searched existing issues and this is not a duplicate.
+          required: true
+        - label: I have removed any API key, token or personal data from this report.
+          required: true
+        - label: This is a bug in DeTube, not a general question or a YouTube/Google problem.
+          required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to youtube.com
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where does it happen?
+      multiple: true
+      options:
+        - YouTube home feed
+        - Options page
+        - Popup
+        - Build / install
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: DeTube version
+      description: Shown on the extension's card at chrome://extensions
+      placeholder: '0.1.0'
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: 'Chrome 141.0.7390.55'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: auth
+    attributes:
+      label: YouTube sign-in state
+      options:
+        - Signed in to YouTube
+        - Signed out
+        - Not sure
+    validations:
+      required: false
+
+  - type: dropdown
+    id: api-key
+    attributes:
+      label: Is a YouTube Data API key configured?
+      description: Options → Connection
+      options:
+        - 'Yes'
+        - 'No'
+        - Not sure
+    validations:
+      required: false
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output
+      description: |
+        Open DevTools on the YouTube tab (or chrome://extensions → Errors) and paste anything relevant.
+        Redact your API key if it appears.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else?
+      description: Screenshots, region, enabled categories, filters, and so on.
+    validations:
+      required: false

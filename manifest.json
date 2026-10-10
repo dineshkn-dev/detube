@@ -3,7 +3,7 @@
   "name": "DeTube",
   "version": "0.1.0",
   "description": "Replace YouTube's personalized home feed with a neutral, user-controlled discovery feed. No tracking, no analytics.",
-  "author": "Hyperati Labs",
+  "author": "Dinesh K N",
   "minimum_chrome_version": "120",
   "permissions": ["storage", "identity"],
   "host_permissions": ["https://www.googleapis.com/*"],

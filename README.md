@@ -285,7 +285,7 @@ Please also read the [Code of Conduct](CODE_OF_CONDUCT.md). Security issues go t
 
 ## License
 
-[MIT](LICENSE) © Hyperati Labs
+[MIT](LICENSE) © Dinesh K N
 
 ---
 

@@ -25,10 +25,10 @@ jobs:
         node: ['20.x', '24.x']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -54,7 +54,7 @@ jobs:
 
       - name: Upload loadable extension bundle
         if: matrix.node == '24.x'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: detube-dist
           path: dist

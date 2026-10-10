@@ -54,7 +54,7 @@ jobs:
 
       - name: Upload loadable extension bundle
         if: matrix.node == '24.x'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: detube-dist
           path: dist

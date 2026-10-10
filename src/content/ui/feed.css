@@ -1,0 +1,604 @@
+@import '../../ui/tokens.css';
+@import '../../ui/brand.css';
+
+/* ============================================================== shell ===== */
+
+:host {
+  display: block;
+  color: var(--dt-text);
+  background: var(--dt-bg);
+  font-family: var(--dt-font);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dt-feed {
+  position: relative;
+  isolation: isolate;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--dt-s-5) var(--dt-s-4) var(--dt-s-7);
+}
+
+/* Single, very low-opacity ambient gradient behind the masthead. */
+.dt-feed::before {
+  content: '';
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 360px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+  background:
+    radial-gradient(55% 100% at 18% 0%, rgba(124, 92, 255, 0.16), transparent 70%),
+    radial-gradient(45% 100% at 72% 0%, rgba(34, 211, 238, 0.12), transparent 70%);
+  filter: blur(18px);
+  animation: dt-drift 24s var(--dt-ease-inout) infinite alternate;
+}
+
+/* ========================================================== progress ===== */
+
+.dt-progress {
+  position: sticky;
+  bottom: 0;
+  height: 3px;
+  margin-top: var(--dt-s-5);
+  border-radius: var(--dt-r-pill);
+  background: var(--dt-surface-2);
+  overflow: hidden;
+}
+
+.dt-progress__bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--dt-progress, 0));
+  background: var(--dt-spectrum);
+  transition: transform var(--dt-dur-micro) linear;
+}
+
+/* =========================================================== masthead ==== */
+
+.dt-masthead {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--dt-s-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--dt-s-4);
+  margin-bottom: var(--dt-s-5);
+  border-bottom: 1px solid var(--dt-border);
+}
+
+.dt-masthead::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 132px;
+  height: 2px;
+  border-radius: var(--dt-r-pill);
+  background: var(--dt-spectrum);
+  background-size: 220% 100%;
+  animation: dt-rail 9s var(--dt-ease-inout) infinite alternate;
+}
+
+@keyframes dt-rail {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+/* The prism mark itself lives in the shared brand stylesheet. */
+
+.dt-titles {
+  min-width: 0;
+  margin-right: auto;
+}
+
+.dt-wordmark {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.dt-tagline {
+  margin: 2px 0 0;
+  color: var(--dt-text-secondary);
+  font-size: 12.5px;
+}
+
+.dt-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--dt-s-2);
+  flex-wrap: wrap;
+}
+
+/* =========================================================== buttons ===== */
+
+.dt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dt-s-2);
+  padding: 8px 14px;
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-r-pill);
+  background: var(--dt-surface);
+  color: var(--dt-text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 550;
+  cursor: pointer;
+  transition:
+    transform var(--dt-dur-fast) var(--dt-ease-spring),
+    border-color var(--dt-dur-fast) var(--dt-ease-out),
+    background var(--dt-dur-fast) var(--dt-ease-out),
+    box-shadow var(--dt-dur-fast) var(--dt-ease-out);
+}
+
+.dt-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--dt-border-strong);
+  background: var(--dt-surface-hover);
+  box-shadow: var(--dt-shadow-2);
+}
+
+.dt-btn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.dt-btn--primary {
+  border-color: transparent;
+  background: var(--dt-accent);
+  color: var(--dt-accent-contrast);
+}
+
+.dt-btn--primary:hover {
+  border-color: transparent;
+  filter: brightness(1.06);
+}
+
+.dt-icon {
+  flex: none;
+}
+
+/* =========================================================== notice ====== */
+
+.dt-notice {
+  display: flex;
+  gap: var(--dt-s-3);
+  align-items: flex-start;
+  margin-bottom: var(--dt-s-5);
+  padding: var(--dt-s-3) var(--dt-s-4);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-r-md);
+  background: var(--dt-surface);
+  color: var(--dt-text-secondary);
+  box-shadow: var(--dt-shadow-1);
+}
+
+.dt-notice::before {
+  content: '';
+  flex: none;
+  width: 3px;
+  align-self: stretch;
+  border-radius: var(--dt-r-pill);
+  background: var(--dt-spectrum);
+}
+
+/* ========================================================== sections ===== */
+
+.dt-section {
+  margin-bottom: var(--dt-s-6);
+}
+
+.dt-section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--dt-s-3);
+  margin: 0 0 var(--dt-s-4);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.dt-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--dt-border-strong), transparent);
+}
+
+.dt-bullet {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--dt-spectrum);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.dt-count {
+  flex: none;
+  padding: 1px 8px;
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-r-pill);
+  background: var(--dt-surface-2);
+  color: var(--dt-text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: var(--dt-s-5) var(--dt-s-4);
+}
+
+.dt-compact .dt-grid {
+  grid-template-columns: repeat(auto-fill, minmax(206px, 1fr));
+  gap: var(--dt-s-4) var(--dt-s-3);
+}
+
+/* ============================================================= cards ===== */
+
+.dt-card {
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.dt-card.is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--dt-dur-base) var(--dt-ease-out),
+    transform var(--dt-dur-base) var(--dt-ease-out);
+  transition-delay: calc(var(--dt-i, 0) * 40ms);
+}
+
+.dt-card__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dt-s-3);
+  transition: transform var(--dt-dur-fast) var(--dt-ease-spring);
+}
+
+.dt-card__inner:hover {
+  transform: translateY(-4px);
+}
+
+.dt-thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--dt-r-lg);
+  overflow: hidden;
+  background: var(--dt-surface-2);
+  box-shadow: inset 0 0 0 1px var(--dt-border);
+  transition: box-shadow var(--dt-dur-fast) var(--dt-ease-out);
+}
+
+.dt-card__inner:hover .dt-thumb {
+  box-shadow:
+    inset 0 0 0 1px var(--dt-border-strong),
+    var(--dt-shadow-3);
+}
+
+.dt-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dt-dur-exp) var(--dt-ease-out);
+}
+
+.dt-card__inner:hover .dt-thumb img {
+  transform: scale(1.03);
+}
+
+/* Spectral sheen sweeping across the thumbnail on hover. */
+.dt-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.22) 46%,
+    rgba(255, 255, 255, 0.06) 52%,
+    transparent 62%
+  );
+  transform: translateX(-130%);
+}
+
+.dt-card__inner:hover .dt-thumb::after {
+  transform: translateX(130%);
+  transition: transform 720ms var(--dt-ease-out);
+}
+
+.dt-thumb--missing::before {
+  content: 'Thumbnail unavailable';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--dt-text-tertiary);
+  font-size: 12px;
+}
+
+.dt-badge {
+  position: absolute;
+  right: var(--dt-s-2);
+  bottom: var(--dt-s-2);
+  padding: 2px 6px;
+  border-radius: var(--dt-r-xs);
+  background: rgba(8, 10, 16, 0.78);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  backdrop-filter: blur(6px);
+}
+
+.dt-card__body {
+  display: flex;
+  gap: var(--dt-s-3);
+  min-width: 0;
+}
+
+.dt-avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 650;
+  background: linear-gradient(
+    150deg,
+    hsl(var(--dt-hue, 265) 70% 60%),
+    hsl(calc(var(--dt-hue, 265) + 42) 68% 45%)
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.dt-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.dt-title {
+  position: relative;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--dt-text);
+  font-size: 14.5px;
+  font-weight: 550;
+  line-height: 1.34;
+  text-decoration: none;
+  transition: color var(--dt-dur-fast) var(--dt-ease-out);
+}
+
+.dt-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--dt-spectrum);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--dt-dur-base) var(--dt-ease-out);
+}
+
+.dt-title:hover::after,
+.dt-card__inner:focus-within .dt-title::after {
+  transform: scaleX(1);
+}
+
+.dt-title:hover {
+  color: var(--dt-accent);
+}
+
+.dt-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  color: var(--dt-text-secondary);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dt-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--dt-text-tertiary);
+}
+
+.dt-compact .dt-title {
+  font-size: 13.5px;
+}
+
+.dt-compact .dt-avatar {
+  width: 22px;
+  height: 22px;
+  font-size: 10.5px;
+}
+
+/* ==================================================== end / empty ========= */
+
+.dt-end,
+.dt-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dt-s-2);
+  margin-top: var(--dt-s-4);
+  padding: var(--dt-s-6) var(--dt-s-4);
+  text-align: center;
+  color: var(--dt-text-secondary);
+  border: 1px dashed var(--dt-border-strong);
+  border-radius: var(--dt-r-xl);
+  background: var(--dt-surface);
+}
+
+.dt-end__title {
+  color: var(--dt-text);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dt-end__note {
+  color: var(--dt-text-tertiary);
+  font-size: 12.5px;
+}
+
+.dt-more {
+  align-self: center;
+  margin-top: var(--dt-s-4);
+}
+
+.dt-sentinel {
+  height: 1px;
+}
+
+/* =========================================================== banner ====== */
+
+.dt-banner {
+  max-width: 660px;
+  margin: var(--dt-s-6) auto;
+  padding: var(--dt-s-5);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-r-xl);
+  background: var(--dt-bg-elevated);
+  box-shadow: var(--dt-shadow-3);
+}
+
+.dt-banner__head {
+  display: flex;
+  align-items: center;
+  gap: var(--dt-s-3);
+  margin-bottom: var(--dt-s-3);
+}
+
+.dt-banner__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.dt-banner__text {
+  margin: 0 0 var(--dt-s-4);
+  color: var(--dt-text-secondary);
+}
+
+/* ========================================================= skeleton ===== */
+
+.dt-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+  gap: var(--dt-s-5) var(--dt-s-4);
+}
+
+.dt-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dt-s-3);
+}
+
+.dt-skeleton__thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--dt-r-lg);
+}
+
+.dt-skeleton__line {
+  height: 11px;
+  border-radius: var(--dt-r-xs);
+}
+
+.dt-skeleton__line--short {
+  width: 55%;
+}
+
+.dt-skeleton__thumb,
+.dt-skeleton__line {
+  background: linear-gradient(90deg, var(--dt-surface-2), var(--dt-border), var(--dt-surface-2));
+  background-size: 220% 100%;
+  animation: dt-shimmer 1.5s var(--dt-ease-inout) infinite;
+}
+
+@keyframes dt-shimmer {
+  from {
+    background-position: 180% 0;
+  }
+  to {
+    background-position: -80% 0;
+  }
+}
+
+/* ====================================================== reshuffle ======= */
+
+.dt-feed.is-reshuffling .dt-thumb::after {
+  transform: translateX(130%);
+  transition: transform 620ms var(--dt-ease-out);
+}
+
+.dt-feed.is-reshuffling .dt-section {
+  animation: dt-iris var(--dt-dur-exp) var(--dt-ease-out) both;
+}
+
+@keyframes dt-iris {
+  from {
+    opacity: 0.35;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ========================================================== a11y ======== */
+
+.dt-feed :focus-visible {
+  outline: 2px solid var(--dt-accent);
+  outline-offset: 2px;
+  border-radius: var(--dt-r-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt-feed::before,
+  .dt-masthead::after,
+  .dt-skeleton__thumb,
+  .dt-skeleton__line {
+    animation: none !important;
+  }
+
+  .dt-card,
+  .dt-card.is-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .dt-feed.is-reshuffling .dt-section {
+    animation: none !important;
+  }
+}

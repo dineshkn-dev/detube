@@ -1,0 +1,66 @@
+/*
+ * Brand primitive — the prism mark, shared by the feed (Shadow DOM) and both
+ * extension pages. Drawn purely in CSS (`clip-path` over a spectral gradient)
+ * so it is CSP-safe, needs no network request, and stays crisp at any size.
+ */
+
+.dt-mark {
+  --dt-mark-size: 32px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--dt-mark-size);
+  height: var(--dt-mark-size);
+  border-radius: 30%;
+  background: linear-gradient(160deg, #1b2130, #090c12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    var(--dt-shadow-2);
+}
+
+.dt-mark__prism {
+  width: 58%;
+  height: 58%;
+  background: var(--dt-spectrum);
+  background-size: 200% 200%;
+  clip-path: polygon(50% 3%, 98% 95%, 2% 95%);
+  animation: dt-mark-shift 16s var(--dt-ease-inout) infinite alternate;
+}
+
+/* The incoming white light, echoing the app icon. */
+.dt-mark::after {
+  content: '';
+  position: absolute;
+  left: 13%;
+  top: 48%;
+  width: 24%;
+  height: max(1px, calc(var(--dt-mark-size) * 0.06));
+  border-radius: var(--dt-r-pill);
+  background: rgba(238, 241, 246, 0.92);
+}
+
+@keyframes dt-mark-shift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+/* Shared ambient drift, used by the feed and the Options aurora. */
+@keyframes dt-drift {
+  from {
+    transform: translate3d(-2%, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt-mark__prism {
+    animation: none !important;
+  }
+}

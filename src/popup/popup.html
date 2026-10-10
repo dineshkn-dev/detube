@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DeTube</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup__head">
+        <span class="dt-mark" aria-hidden="true"><span class="dt-mark__prism"></span></span>
+        <div class="popup__titles">
+          <h1>DeTube</h1>
+          <p>Discovery you control</p>
+        </div>
+      </header>
+
+      <label class="switch">
+        <input id="enabled" type="checkbox" />
+        <span class="switch__track" aria-hidden="true"></span>
+        <span class="switch__label">Enabled on YouTube home</span>
+      </label>
+
+      <div class="status" id="status-rows"></div>
+
+      <div class="actions">
+        <button id="reshuffle" class="btn" type="button">Reshuffle</button>
+        <button id="open-youtube" class="btn" type="button">YouTube</button>
+        <button id="open-options" class="btn btn--primary" type="button">Settings</button>
+      </div>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

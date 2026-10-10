@@ -1,0 +1,73 @@
+name: Feature request
+description: Suggest an improvement to DeTube.
+title: '[Feature]: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before proposing a feature, please skim the project invariants in
+        [CONTRIBUTING.md](https://github.com/dineshkn-dev/detube/blob/main/CONTRIBUTING.md#project-invariants).
+
+        In particular, DeTube will not infer your interests from behaviour, add analytics, or grow its
+        permission set without a concrete need. Proposals that require any of those will be declined —
+        but there is a lot of room to improve discovery without them.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checks
+      options:
+        - label: I have searched existing issues and discussions for this idea.
+          required: true
+        - label: This request does not require analysing my watch history or any other behaviour.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation, not the implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like DeTube to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Including any way to achieve this with the existing settings.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      multiple: true
+      options:
+        - Ranking / diversity
+        - Sources and categories
+        - Filters (Shorts, duration, clickbait)
+        - Options page
+        - Design / motion
+        - Documentation
+        - Build / tooling
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to open a pull request for this.
+          required: false

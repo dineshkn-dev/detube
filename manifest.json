@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "DeTube",
+  "version": "0.1.0",
+  "description": "Replace YouTube's personalized home feed with a neutral, user-controlled discovery feed. No tracking, no analytics.",
+  "author": "Hyperati Labs",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "identity"],
+  "host_permissions": ["https://www.googleapis.com/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "DeTube",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "options_page": "options.html",
+  "oauth2": {
+    "client_id": "REPLACE_WITH_YOUR_CHROME_EXTENSION_OAUTH_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/youtube.readonly"]
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
